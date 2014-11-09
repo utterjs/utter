@@ -39,6 +39,27 @@ var input=blessed.form({
   ,content:'this is where you would type'
 }); 
 
+var users=blessed.form({
+  parent:screen
+  ,keys:true
+  ,left:chat.w-15
+  ,top:1
+  ,width:15
+  ,height:chat.h-2
+  ,bg:'green'
+  ,content:'@ansuz\n@lukevers\ninhies'
+});
+
+var body=blessed.form({
+  parent:screen
+  ,keys:true
+  ,left:20
+  ,top:1
+  ,width:chat.w-34
+  ,height:chat.h-2
+  ,content:'pewpewpewpew\npewpewpew'
+});
+  
 screen.key('q',function(){
   process.exit(0);
 });
@@ -47,6 +68,8 @@ screen.on('resize', function() {
   chat.w = screen.width;
   chat.h = screen.height;
   input.top=chat.h-1;
+  users.left=chat.w-15;
+  users.height=chat.h-2;
   screen.render();
 });
 
