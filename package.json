@@ -1,0 +1,27 @@
+{
+  "name": "blurt",
+  "version": "0.0.0",
+  "description": "An IRC/XMPP client written in nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blurtjs/blurt.git"
+  },
+  "keywords": [
+    "xmpp",
+    "irc",
+    "ansuz",
+    "lukevers",
+    "awesome",
+    "cats"
+  ],
+  "author": "ansuz, lukevers",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/blurtjs/blurt/issues"
+  },
+  "homepage": "https://github.com/blurtjs/blurt"
+}
