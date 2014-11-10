@@ -32,8 +32,15 @@ var chanlist=blessed.form({
   ,top:0
   ,width:'shrink'
   ,height:1000
-  ,bg:0
   ,content:chans.join('\n')
+});
+
+var chanline=blessed.line({
+  parent:screen
+  ,left: c_width-1
+  ,top: 0
+  ,height: '100%'
+  ,fg: 0
 });
 
 var topic=blessed.form({
@@ -41,7 +48,7 @@ var topic=blessed.form({
   ,keys:true
   ,left:c_width
   ,top:0
-  ,width:510 // maximum irc topic length (actually 512, but 2 are line feed)
+  ,width:chat.w-(c_width+u_width)
   ,height:1
   ,bg:0
   ,content:'blurt is an awesome irc client written in nodejs'
@@ -52,7 +59,7 @@ var input=blessed.input({
   ,keys:true
   ,left:c_width
   ,top:chat.h-1
-  ,width:510
+  ,width:chat.w-(c_width+u_width)
   ,height:1
   ,bg:0
   ,content:''
@@ -62,11 +69,18 @@ var users=blessed.form({
   parent:screen
   ,keys:true
   ,right:0
-  ,top:1
+  ,top:0
   ,width:'shrink'
   ,height:chat.h-2
-  ,bg:0
   ,content:users.join('\n')
+});
+
+var usersline=blessed.line({
+  parent:screen
+  ,right: u_width
+  ,top: 0
+  ,height: '100%'
+  ,fg: 0
 });
 
 var body=blessed.form({
@@ -74,7 +88,7 @@ var body=blessed.form({
   ,keys:true
   ,left:c_width
   ,top:1
-  ,width:chat.w-(c_width+u_width)
+  ,width:chat.w-(c_width+u_width)-1
   ,height:chat.h-2
   ,content:'pewpewpewpew\npewpewpew'
 });
@@ -127,9 +141,11 @@ screen.on('resize', function() {
   chat.h = screen.height;
 
   input.top = chat.h-1;
-
+  topic.width = chat.w-(c_width+u_width)
+  input.width = chat.w-(c_width+u_width)
+  
   body.height = chat.h-2;
-  body.width = chat.w-(c_width+u_width);
+  body.width = chat.w-(c_width+u_width)-1;
   if(options.debug){
     debug();
   }
