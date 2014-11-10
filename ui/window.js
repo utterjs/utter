@@ -1,6 +1,10 @@
 var blessed=require('blessed')
     ,screen=blessed.screen();
 
+var options={
+  debug:true
+};
+
 var chat={
   w:screen.width
   ,h:screen.height
@@ -81,11 +85,19 @@ screen.key('q',function(){
 
 var debug=function(){
   stats={
+
     windowHeight:chat.h
     ,windowWidth:chat.w
+
     ,inputTop:input.top
+    ,inputWidth:input.width
     ,bodyHeight:body.height
     ,bodyWidth:body.width
+
+    ,usersHeight:users.height
+    ,usersWidth:users.width
+    ,chansHeight:chanlist.height
+    ,chansWidth:chanlist.width
   };
   body.content=Object.keys(stats).map(function(k){
     return k+" "+stats[k];
@@ -101,7 +113,9 @@ screen.on('resize', function() {
 
   body.height = chat.h-2;
   body.width = chat.w-(c_width+u_width);
-  debug();  
+  if(options.debug){
+    debug();
+  }
   screen.render();
 });
 
