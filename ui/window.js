@@ -47,7 +47,7 @@ var topic=blessed.form({
   ,content:'blurt is an awesome irc client written in nodejs'
 });
 
-var input=blessed.form({
+var input=blessed.input({
   parent:screen
   ,keys:true
   ,left:c_width
@@ -55,8 +55,8 @@ var input=blessed.form({
   ,width:510
   ,height:1
   ,bg:0
-  ,content:'this is where you would type'
-}); 
+  ,content:''
+});
 
 var users=blessed.form({
   parent:screen
@@ -79,8 +79,25 @@ var body=blessed.form({
   ,content:'pewpewpewpew\npewpewpew'
 });
   
-screen.key('q',function(){
+screen.key('escape',function(){
   process.exit(0);
+});
+
+screen.on('keypress',function(ch, key) {
+  switch(key.name) {
+    case 'backspace':
+      input.content = input.content.substring(0, input.content.length-1);
+      break;
+    case 'enter':
+      // parse input.content
+      break;
+    default:
+      input.content += ch;
+      break;
+  }
+
+  // Render
+  screen.render();
 });
 
 var debug=function(){
