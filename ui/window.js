@@ -11,7 +11,7 @@ var chanlist=blessed.form({
   ,keys:true
   ,left:0
   ,top:0
-  ,width:19
+  ,width:'shrink'
   ,height:1000
   ,bg:'green'
   ,content:'#blurt\n#nodejs\n#lukevers\n#webdev'
@@ -35,18 +35,18 @@ var input=blessed.form({
   ,top:chat.h-1
   ,width:510
   ,height:1
-  ,bg:'red'
+  ,bg:0
   ,content:'this is where you would type'
 }); 
 
 var users=blessed.form({
   parent:screen
   ,keys:true
-  ,left:chat.w-15
+  ,right:0
   ,top:1
-  ,width:15
+  ,width:'shrink'
   ,height:chat.h-2
-  ,bg:'green'
+  ,bg:0
   ,content:'@ansuz\n@lukevers\ninhies'
 });
 
@@ -68,8 +68,6 @@ screen.on('resize', function() {
   chat.w = screen.width;
   chat.h = screen.height;
   input.top=chat.h-1;
-  users.left=chat.w-15;
-  users.height=chat.h-2;
   screen.render();
 });
 
