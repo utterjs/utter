@@ -18,7 +18,7 @@ var users=[
 var u_width = users.reduce(function (a, b) { return a.length > b.length ? a : b; }).length;
 
 var chans=[
-  '#blurt',
+  '#blurtjs',
   '#nodejs',
   '#lukevers',
   '#webdev'
