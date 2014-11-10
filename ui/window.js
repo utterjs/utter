@@ -151,10 +151,12 @@ screen.on('resize', function() {
   chat.h = screen.height;
 
   input.top = chat.h-1;
+  chaninfo.top = chat.h-2;
   topic.width = chat.w-(c_width+u_width)
   input.width = chat.w-(c_width+u_width)
+  chaninfo.width = chat.w-(c_width+u_width)
   
-  body.height = chat.h-2;
+  body.height = chat.h-3;
   body.width = chat.w-(c_width+u_width)-1;
   if(options.debug){
     debug();
