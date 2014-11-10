@@ -79,11 +79,29 @@ screen.key('q',function(){
   process.exit(0);
 });
 
+var debug=function(){
+  stats={
+    windowHeight:chat.h
+    ,windowWidth:chat.w
+    ,inputTop:input.top
+    ,bodyHeight:body.height
+    ,bodyWidth:body.width
+  };
+  body.content=Object.keys(stats).map(function(k){
+    return k+" "+stats[k];
+  }).join("\n");
+};
+
 screen.on('resize', function() {
+  // get updated size
   chat.w = screen.width;
   chat.h = screen.height;
+
   input.top = chat.h-1;
+
+  body.height = chat.h-2;
   body.width = chat.w-(c_width+u_width);
+  debug();  
   screen.render();
 });
 
