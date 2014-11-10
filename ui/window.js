@@ -61,8 +61,18 @@ var input=blessed.input({
   ,top:chat.h-1
   ,width:chat.w-(c_width+u_width)
   ,height:1
-  ,bg:0
-  ,content:''
+  ,content:'type and see the input work!'
+});
+
+var chaninfo=blessed.box({
+  parent:screen
+  ,keys:true
+  ,left:c_width
+  ,top:chat.h-2
+  ,width:chat.w-(c_width+u_width)
+  ,height:1
+  ,content:'channel info'
+  ,bg: 0
 });
 
 var users=blessed.form({
@@ -89,7 +99,7 @@ var body=blessed.form({
   ,left:c_width
   ,top:1
   ,width:chat.w-(c_width+u_width)-1
-  ,height:chat.h-2
+  ,height:chat.h-3
   ,content:'pewpewpewpew\npewpewpew'
 });
   
