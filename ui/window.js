@@ -100,7 +100,7 @@ var body=blessed.form({
   ,top:1
   ,width:chat.w-(c_width+u_width)-1
   ,height:chat.h-3
-  ,content:'pewpewpewpew\npewpewpew'
+  ,content:'[00:00:00] <@lukevers> kittens!'
 });
   
 screen.key('escape',function(){
@@ -116,7 +116,7 @@ screen.on('keypress',function(ch, key) {
       // parse input.content
       break;
     default:
-      input.content += ch;
+      input.content += (typeof ch === 'undefined') ? '' : ch;
       break;
   }
 
