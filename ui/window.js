@@ -31,13 +31,13 @@ var chanlist=blessed.form({
   ,left:0
   ,top:0
   ,width:'shrink'
-  ,height:1000
+  ,height:'100%'
   ,content:chans.join('\n')
 });
 
 var chanline=blessed.line({
   parent:screen
-  ,left: c_width-1
+  ,left: c_width
   ,top: 0
   ,height: '100%'
   ,fg: 0
@@ -46,7 +46,7 @@ var chanline=blessed.line({
 var topic=blessed.form({
   parent:screen
   ,keys:true
-  ,left:c_width
+  ,left:c_width+1
   ,top:0
   ,width:chat.w-(c_width+u_width)
   ,height:1
@@ -57,7 +57,7 @@ var topic=blessed.form({
 var input=blessed.input({
   parent:screen
   ,keys:true
-  ,left:c_width
+  ,left:c_width+1
   ,top:chat.h-1
   ,width:chat.w-(c_width+u_width)
   ,height:1
@@ -67,9 +67,9 @@ var input=blessed.input({
 var chaninfo=blessed.box({
   parent:screen
   ,keys:true
-  ,left:c_width
+  ,left:c_width+1
   ,top:chat.h-2
-  ,width:chat.w-(c_width+u_width)
+  ,width:chat.w-(c_width+u_width)-1
   ,height:1
   ,content:'channel info'
   ,bg: 0
@@ -96,9 +96,9 @@ var usersline=blessed.line({
 var body=blessed.form({
   parent:screen
   ,keys:true
-  ,left:c_width
+  ,left:c_width+1
   ,top:1
-  ,width:chat.w-(c_width+u_width)-1
+  ,width:chat.w-(c_width+u_width)-2
   ,height:chat.h-3
   ,content:'[00:00:00] <@lukevers> kittens!'
 });
@@ -152,12 +152,12 @@ screen.on('resize', function() {
 
   input.top = chat.h-1;
   chaninfo.top = chat.h-2;
-  topic.width = chat.w-(c_width+u_width)
-  input.width = chat.w-(c_width+u_width)
-  chaninfo.width = chat.w-(c_width+u_width)
+  topic.width = chat.w-(c_width+u_width)-1;
+  input.width = chat.w-(c_width+u_width)-1;
+  chaninfo.width = chat.w-(c_width+u_width)-1;
   
   body.height = chat.h-3;
-  body.width = chat.w-(c_width+u_width)-1;
+  body.width = chat.w-(c_width+u_width)-2;
   if(options.debug){
     debug();
   }
