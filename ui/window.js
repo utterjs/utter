@@ -1,21 +1,31 @@
 var blessed=require('blessed')
     ,screen=blessed.screen();
 
-var options={
+// the main object this module will export
+var window={};
+
+// expose the rendering function
+window.render=screen.render;
+
+// expose options so that plugins can modify them
+// this also provides a shared variable space (window specific)
+window.options={
   debug:true
 };
 
-var chat={
+// dimensions of the window
+window.dim={
   w:screen.width
   ,h:screen.height
 };
 
-var users=[
+window.users=[
   '@ansuz',
   '@lukevers',
   'inhies'
 ];
-var u_width = users.reduce(function (a, b) { return a.length > b.length ? a : b; }).length;
+
+var u_width = window.users.reduce(function (a, b) { return a.length > b.length ? a : b; }).length;
 
 var chans=[
   '#blurtjs',
@@ -25,7 +35,7 @@ var chans=[
 ].map(function(c, v) { return ++v + '.' + c });
 var c_width = chans.reduce(function(a, b) { return a.length > b.length ? a : b; }).length;
 
-var chanlist=blessed.form({
+window.CHANLIST=blessed.form({
   parent:screen
   ,keys:true
   ,left:0
@@ -35,7 +45,7 @@ var chanlist=blessed.form({
   ,content:chans.join('\n')
 });
 
-var chanline=blessed.line({
+window.CHANLINE=blessed.line({
   parent:screen
   ,left: c_width
   ,top: 0
@@ -43,49 +53,49 @@ var chanline=blessed.line({
   ,fg: 0
 });
 
-var topic=blessed.form({
+window.TOPIC=blessed.form({
   parent:screen
   ,keys:true
   ,left:c_width+1
   ,top:0
-  ,width:chat.w-(c_width+u_width)
+  ,width:window.dim.w-(c_width+u_width)
   ,height:1
   ,bg:0
   ,content:'blurt is an awesome irc client written in nodejs'
 });
 
-var input=blessed.input({
+window.INPUT=blessed.input({
   parent:screen
   ,keys:true
   ,left:c_width+1
-  ,top:chat.h-1
-  ,width:chat.w-(c_width+u_width)
+  ,top:window.dim.h-1
+  ,width:window.dim.w-(c_width+u_width)
   ,height:1
   ,content:'type and see the input work!'
 });
 
-var chaninfo=blessed.box({
+window.CHANINFO=blessed.box({
   parent:screen
   ,keys:true
   ,left:c_width+1
-  ,top:chat.h-2
-  ,width:chat.w-(c_width+u_width)-1
+  ,top:window.dim.h-2
+  ,width:window.dim.w-(c_width+u_width)-1
   ,height:1
   ,content:'channel info'
   ,bg: 0
 });
 
-var users=blessed.form({
+window.USERLIST=blessed.form({
   parent:screen
   ,keys:true
   ,right:0
   ,top:0
   ,width:'shrink'
-  ,height:chat.h-2
-  ,content:users.join('\n')
+  ,height:window.dim.h-2
+  ,content:window.users.join('\n')
 });
 
-var usersline=blessed.line({
+window.USERSLINE=blessed.line({
   parent:screen
   ,right: u_width
   ,top: 0
@@ -93,75 +103,81 @@ var usersline=blessed.line({
   ,fg: 0
 });
 
-var body=blessed.form({
+window.BODY=blessed.form({
   parent:screen
   ,keys:true
   ,left:c_width+1
   ,top:1
-  ,width:chat.w-(c_width+u_width)-2
-  ,height:chat.h-3
+  ,width:window.dim.w-(c_width+u_width)-2
+  ,height:window.dim.h-3
   ,content:'[00:00:00] <@lukevers> kittens!'
 });
-  
-screen.key('escape',function(){
-  process.exit(0);
-});
 
-screen.on('keypress',function(ch, key) {
+window.onEscape=function(){
+  process.exit(0);
+};
+  
+screen.key('escape',window.onEscape);
+
+window.onKeypress=function(ch, key) {
   switch(key.name) {
     case 'backspace':
-      input.content = input.content.substring(0, input.content.length-1);
+      window.INPUT.content = window.INPUT.content.substring(0, window.INPUT.content.length-1);
       break;
     case 'enter':
-      // parse input.content
+      // parse window.INPUT.content
       break;
     default:
-      input.content += (typeof ch === 'undefined') ? '' : ch;
+      window.INPUT.content += (typeof ch === 'undefined') ? '' : ch;
       break;
   }
-
   // Render
   screen.render();
-});
+};
 
-var debug=function(){
+screen.on('keypress',window.onKeypress);
+
+window.debug=function(){
   stats={
+    windowHeight:window.dim.h
+    ,windowWidth:window.dim.w
 
-    windowHeight:chat.h
-    ,windowWidth:chat.w
+    ,inputTop:window.INPUT.top
+    ,inputWidth:window.INPUT.width
+    ,bodyHeight:window.BODY.height
+    ,bodyWidth:window.BODY.width
 
-    ,inputTop:input.top
-    ,inputWidth:input.width
-    ,bodyHeight:body.height
-    ,bodyWidth:body.width
-
-    ,usersHeight:users.height
-    ,usersWidth:users.width
-    ,chansHeight:chanlist.height
-    ,chansWidth:chanlist.width
+    ,usersHeight:window.USERLIST.height
+    ,usersWidth:window.USERLIST.width
+    ,chansHeight:window.CHANLIST.height
+    ,chansWidth:window.CHANLIST.width
   };
-  body.content=Object.keys(stats).map(function(k){
+  window.BODY.content=Object.keys(stats).map(function(k){
     return k+" "+stats[k];
   }).join("\n");
 };
 
-screen.on('resize', function() {
+window.onResize=function() {
   // get updated size
-  chat.w = screen.width;
-  chat.h = screen.height;
+  window.dim.w = screen.width;
+  window.dim.h = screen.height;
 
-  input.top = chat.h-1;
-  chaninfo.top = chat.h-2;
-  topic.width = chat.w-(c_width+u_width)-1;
-  input.width = chat.w-(c_width+u_width)-1;
-  chaninfo.width = chat.w-(c_width+u_width)-1;
+  window.INPUT.top = window.dim.h-1;
+  window.CHANINFO.top = window.dim.h-2;
+  window.TOPIC.width = window.dim.w-(c_width+u_width)-1;
+  window.INPUT.width = window.dim.w-(c_width+u_width)-1;
+  window.CHANINFO.width = window.dim.w-(c_width+u_width)-1;
   
-  body.height = chat.h-3;
-  body.width = chat.w-(c_width+u_width)-2;
-  if(options.debug){
-    debug();
+  window.BODY.height = window.dim.h-3;
+  window.BODY.width = window.dim.w-(c_width+u_width)-2;
+  if(window.options.debug){
+    window.debug();
   }
   screen.render();
-});
+}
+
+screen.on('resize', window.onResize);
 
 screen.render();
+
+module.exports=window; 
