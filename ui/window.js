@@ -5,7 +5,9 @@ var blessed=require('blessed')
 var window={};
 
 // expose the rendering function
-window.render=screen.render;
+window.render=function() { 
+  screen.render(); 
+};
 
 // expose options so that plugins can modify them
 // this also provides a shared variable space (window specific)
@@ -24,7 +26,6 @@ window.users=[
   '@lukevers',
   'inhies'
 ];
-
 var u_width = window.users.reduce(function (a, b) { return a.length > b.length ? a : b; }).length;
 
 var chans=[
@@ -177,7 +178,5 @@ window.onResize=function() {
 }
 
 screen.on('resize', window.onResize);
-
-screen.render();
 
 module.exports=window; 
