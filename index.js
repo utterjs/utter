@@ -10,6 +10,6 @@ hypeirc.channels[0].userlist = ['lukevers', 'ansuz'];
 hypeirc.channels[1].userlist = ['inhies', 'ansuz'];
 
 // Output to check that it's working
-console.log(hypeirc.channels);
+console.log(hypeirc.channels[0].width());
 
 //require('./ui/window.js').render();
