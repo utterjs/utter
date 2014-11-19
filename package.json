@@ -1,5 +1,5 @@
 {
-  "name": "blurt",
+  "name": "utter",
   "version": "0.0.0",
   "description": "An IRC/XMPP client written in nodejs",
   "main": "index.js",
@@ -8,11 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/blurtjs/blurt.git"
+    "url": "https://github.com/utter/utter.git"
   },
   "keywords": [
-    "blurt",
-    "blurtjs",
+    "utter",
+    "utterjs",
     "xmpp",
     "irc",
     "ansuz",
@@ -23,14 +23,15 @@
   "author": "ansuz, lukevers",
   "license": "GPLv3",
   "bugs": {
-    "url": "https://github.com/blurtjs/blurt/issues"
+    "url": "https://github.com/utterjs/utter/issues"
   },
-  "homepage": "https://github.com/blurtjs/blurt",
+  "homepage": "https://github.com/utter/utter",
   "dependencies": {
     "blessed": "^0.0.37",
     "chalk": "^0.5.1",
     "cjdson": "0.0.0",
     "irc": "^0.3.7",
+    "keypress": "^0.2.1",
     "node-xmpp-client": "^1.0.0-alpha17"
   }
 }
