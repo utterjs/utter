@@ -1,5 +1,7 @@
 # utter
 
+[![NPM](https://nodei.co/npm/utter.png)](https://nodei.co/npm/utter/)
+
 ## An IRC/XMPP client written in node.
 
 The landscape of terminal based chat clients is dominated by weechat and irssi. Either client is extensible via a plugin system, yet neither supports plugins written in Javascript, ostensibly the most popular scripting language used today.
