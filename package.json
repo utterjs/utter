@@ -29,6 +29,7 @@
   "dependencies": {
     "blessed": "^0.0.37",
     "chalk": "^0.5.1",
+    "cjdson": "0.0.0",
     "irc": "^0.3.7",
     "node-xmpp-client": "^1.0.0-alpha17"
   }

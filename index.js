@@ -1,5 +1,5 @@
 // Setup
-require('./lib/setup.js');
+require('./lib/start.js');
 
 
 // Require server/channel
