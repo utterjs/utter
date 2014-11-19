@@ -29,7 +29,7 @@ window.users=[
 var u_width = window.users.reduce(function (a, b) { return a.length > b.length ? a : b; }).length;
 
 var chans=[
-  '#blurtjs',
+  '#utterjs',
   '#nodejs',
   '#lukevers',
   '#webdev'
@@ -62,7 +62,7 @@ window.TOPIC=blessed.form({
   ,width:window.dim.w-(c_width+u_width)
   ,height:1
   ,bg:0
-  ,content:'blurt is an awesome irc client written in nodejs'
+  ,content:'utter is an awesome irc client written in nodejs'
 });
 
 window.INPUT=blessed.input({
