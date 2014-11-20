@@ -1,6 +1,8 @@
 // Setup
 require('./start/setup.js');
 
+console.log(config);
+
 /*
 // Require server/channel
 var server  = require('./lib/server.js');

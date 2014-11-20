@@ -33,7 +33,7 @@ if (!fs.existsSync(BLURT_DIR+'/blurt.json'))
 // start creating our objects.
 // -----
 
-var config = fs.readFileSync(BLURT_DIR+'/blurt.json', 'UTF-8');
+config = fs.readFileSync(BLURT_DIR+'/blurt.json', 'UTF-8');
 
 // ----
 // Now we're going to parse our config file using cjdson
