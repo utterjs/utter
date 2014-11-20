@@ -1,7 +1,7 @@
 // Setup
-require('./lib/start.js');
+require('./start/setup.js');
 
-
+/*
 // Require server/channel
 var server  = require('./lib/server.js');
 var channel = require('./lib/channel.js');
@@ -27,6 +27,6 @@ console.log(hypeirc.channels[1]._width());
 
 // When you call _width() it both returns the width and updates the width
 // of the channel.
-console.log(hypeirc.channels[1].width);
+console.log(hypeirc.channels[1].width);*/
 
 //require('./ui/window.js').render();
