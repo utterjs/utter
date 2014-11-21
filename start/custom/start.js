@@ -4,5 +4,3 @@
 //
 //  - https://github.com/utterjs/utter/blob/master/start/README.md
 // -----
-
-console.log('x');
