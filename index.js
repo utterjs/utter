@@ -3,12 +3,13 @@
 // -----
 
 require('./start/setup.js');
+require('./start/plugins.js');
 
 // -----
 // Create UI
 // -----
 
-require('./lib/ui/window.js').render();
+window = require('./lib/ui/window.js');
 
 /*
 // Require server/channel

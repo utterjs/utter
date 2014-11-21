@@ -5,8 +5,8 @@ var fs     = require('fs');
 // Utter Directory
 // -----
 
-var  HOME_DIR = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
-var UTTER_DIR = HOME_DIR + '/.utter';
+var HOME_DIR = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+UTTER_DIR    = HOME_DIR + '/.utter';
 
 // -----
 // Check to see if directory exists, and if it
