@@ -9,7 +9,18 @@ require('./start/plugins.js');
 // Create UI
 // -----
 
-window = require('./lib/ui/window.js');
+window  = require('./lib/ui/window.js');
+strokes = require('./lib/input/strokes.js');
+
+window.render();
+strokes.init();
+
+strokes.display = function() {
+	window.INPUT.content = strokes.currentBufferText();
+	window.render();
+};
+
+
 
 /*
 // Require server/channel
