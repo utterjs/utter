@@ -69,3 +69,5 @@ if (!fs.existsSync(UTTER_DIR+'/scripts/start.js'))
 // -----
 
 require(UTTER_DIR+'/scripts/start.js');
+
+module.exports=config;
