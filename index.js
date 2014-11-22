@@ -24,4 +24,7 @@ strokes.init({
     window.INPUT.content = strokes.currentBufferText();
     window.render();
   }
+  ,send: function(msg){
+    window.BODY.content += "\n[00:00:00] <@username> "+msg;
+  }
 });
