@@ -1,5 +1,7 @@
 # utter
 
+[![NPM](https://nodei.co/npm/utter.png)](https://nodei.co/npm/utter/)
+
 ```
          _    _              
         | |  | |             
@@ -21,8 +23,6 @@
                  ``""--`------`
 
 ```
-
-[![NPM](https://nodei.co/npm/utter.png)](https://nodei.co/npm/utter/)
 
 ## An IRC/XMPP client written in node.
 
