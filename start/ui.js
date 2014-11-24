@@ -16,7 +16,7 @@ strokes.init({
     window.render();
   }
   ,send: function(msg){
-    window.BODY.content += "\n[00:00:00] <@username> "+msg;
+    parse(msg);
   }
 });
 
@@ -25,3 +25,28 @@ strokes.init({
 // -----
 
 window.render();
+
+// -----
+// Parse
+// -----
+
+var parse = function(input) {
+  // Check to see if it's a command or not.
+  if (input.substring(0, 1) == '/') {
+    parseCommand(input.substring(1).trim().split(' '));
+  } else {
+    // Parse text instead!
+  }
+};
+
+var parseCommand = function(args) {
+  switch(args[0]) {
+    case 'exit':
+    case 'quit':
+      process.exit(0);
+      break;
+    default:
+      // Not sure what to do here yet
+      break;
+  }
+};
