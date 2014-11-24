@@ -1,6 +1,32 @@
-# input.js
+# strokes.js (formery input.js)
 
 This is where all of your input gets handled. That's a big, important job in a messaging client, so we're gonna document things.
+
+## Methods
+
+`init(opt)` :: takes `opt`, an object which allows you to override the default methods [display,send,currentChannel(object)]. Initializes the program to read from stdin.
+
+`changeChannel(channelObj)` :: used to switch between channels.
+
+`currentBufferText()` :: returns the contents of the current channel's input buffer as a string.
+
+`setPrefix()` :: change the current prefix character
+
+`core.parseCommand()` :: used to parse messages passed after an unescaped prefix character (default '/').
+
+`onReturn()`
+
+`onBackspace()`
+
+`pushInput()`
+
+`listen()`
+
+## Internal variables
+
+`core` :: an object which contains the default methods.
+
+`prefixChar` :: the prefix character (or sequence) used to distinguish commands from messages.
 
 ## Keybindings
 
