@@ -41,6 +41,7 @@ var parse = function(input) {
 
 var parseCommand = function(args) {
   switch(args[0]) {
+    case 'exit':
     case 'quit':
       process.exit(0);
       break;
